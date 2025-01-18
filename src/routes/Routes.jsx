@@ -8,6 +8,7 @@ import AllMeals from "../pages/dashboard/admin/allMeals/AllMeals";
 import ManageUsers from "../pages/dashboard/admin/manageUsers/ManageUsers";
 import UpdateMeal from "../pages/dashboard/admin/updateMeal/UpdateMeal";
 import Profile from "../pages/dashboard/common/Profile";
+import RequestedMeals from "../pages/dashboard/user/requestedMeals/RequestedMeals";
 import Home from "../pages/home/home/Home";
 import Login from "../pages/login/Login";
 import MealDetails from "../pages/mealDetails/MealDetails";
@@ -68,6 +69,8 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
       },
+
+      // admin relate routes
       {
         path: "add-meal",
         element: (
@@ -105,6 +108,16 @@ const router = createBrowserRouter([
             <AdminRoute>
               <ManageUsers />
             </AdminRoute>
+          </PrivateRoutes>
+        ),
+      },
+
+      // user related routes
+      {
+        path: "requested-meals",
+        element: (
+          <PrivateRoutes>
+            <RequestedMeals />
           </PrivateRoutes>
         ),
       },
