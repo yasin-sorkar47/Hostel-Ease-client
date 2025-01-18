@@ -8,11 +8,12 @@ import MenuItem from "./Menu/MenuItem";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.webp";
 import useAuth from "../../../hooks/useAuth";
+import useRole from "../../../hooks/useRole";
 import AdminMenu from "./Menu/AdminMenu";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
-
+  const [role, isLoading] = useRole();
   const { user, singOutUser, setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -27,6 +28,8 @@ const Sidebar = () => {
         console.log(error);
       });
   };
+
+  console.log(role);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -77,7 +80,8 @@ const Sidebar = () => {
                 label="Statistics"
                 address="/dashboard"
               />
-              <AdminMenu />
+
+              {role === "admin" && <AdminMenu />}
             </nav>
           </div>
         </div>

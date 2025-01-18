@@ -1,8 +1,29 @@
 import { Helmet } from "react-helmet-async";
+import { useQuery } from "react-query";
 import coverImage from "../../../assets/coverImage.jpg";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useRole from "../../../hooks/useRole";
 const Profile = () => {
   const { user } = useAuth();
+  const [role] = useRole();
+  const axiosSecure = useAxiosSecure();
+
+  const { data: meals = [] } = useQuery({
+    queryKey: ["meal", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/added-meal/${user?.email}`);
+      return data;
+    },
+  });
+
+  const { data: badge = "" } = useQuery({
+    queryKey: ["badge", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/subscriptionStatus/${user?.email}`);
+      return data.status;
+    },
+  });
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -23,13 +44,6 @@ const Profile = () => {
               className="mx-auto object-cover rounded-full h-24 w-24  border-2 border-white "
             />
           </a>
-
-          <p className="p-2 px-4 text-xs text-white bg-purple-500 rounded-full">
-            user
-          </p>
-          <p className="mt-2 text-xl font-medium text-gray-800 ">
-            User Id: {user.uid}
-          </p>
           <div className="w-full p-2 mt-4 rounded-lg">
             <div className="flex flex-wrap items-center justify-between text-sm text-gray-600 ">
               <p className="flex flex-col">
@@ -42,15 +56,19 @@ const Profile = () => {
                 Email
                 <span className="font-bold text-black ">{user.email}</span>
               </p>
-
-              <div>
-                <button className="bg-purple-500 px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-purple-800 block mb-1">
-                  Update Profile
-                </button>
-                <button className="bg-purple-500 text-white px-7 py-1 rounded-lg  cursor-pointer hover:bg-purple-800">
-                  Change Password
-                </button>
-              </div>
+              {role === "admin" ? (
+                <p className="flex flex-col">
+                  Number of Meal Added
+                  <span className="font-bold text-black ">
+                    I Added Meals: ({meals?.length})
+                  </span>
+                </p>
+              ) : (
+                <p className="flex flex-col">
+                  Badge
+                  <span className="font-bold text-black ">({badge})</span>
+                </p>
+              )}
             </div>
           </div>
         </div>
