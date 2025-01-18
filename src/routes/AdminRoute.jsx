@@ -7,7 +7,11 @@ export default function AdminRoute({ children }) {
   const [role, isLoading] = useRole();
   const { user, loader } = useAuth();
 
-  if (loader && isLoading) {
+  if (loader) {
+    return <LoaderPage />;
+  }
+
+  if (isLoading) {
     return <LoaderPage />;
   }
 

@@ -10,11 +10,12 @@ import logo from "../../../assets/logo.webp";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
 import AdminMenu from "./Menu/AdminMenu";
+import UserMenu from "./Menu/UserMenu";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
-  const [role, isLoading] = useRole();
-  const { user, singOutUser, setUser } = useAuth();
+  const [role] = useRole();
+  const { singOutUser, setUser } = useAuth();
   const navigate = useNavigate();
 
   const onLogout = () => {
@@ -28,8 +29,6 @@ const Sidebar = () => {
         console.log(error);
       });
   };
-
-  console.log(role);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -82,6 +81,7 @@ const Sidebar = () => {
               />
 
               {role === "admin" && <AdminMenu />}
+              {role === "user" && <UserMenu />}
             </nav>
           </div>
         </div>
