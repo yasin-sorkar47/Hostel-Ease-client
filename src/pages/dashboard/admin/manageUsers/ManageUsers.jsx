@@ -5,7 +5,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 export default function ManageUsers() {
   const axiosSecure = useAxiosSecure();
   const [query, setQuery] = useState("");
-  const { data: users = [], refetch } = useQuery({
+  const { data: users = [] } = useQuery({
     queryKey: ["users", query],
     enabled: query.length === 0 || query.length > 0,
     queryFn: async () => {
@@ -15,7 +15,7 @@ export default function ManageUsers() {
   });
 
   const handleSearch = (e) => {
-    setQuery(e.target.value); // Update search query
+    setQuery(e.target.value);
   };
 
   return (

@@ -115,6 +115,8 @@ const MealDetails = () => {
         const requestObj = {
           meal_title: title,
           meal_id: _id,
+          likes: likes,
+          reviews_count: reviews_count,
           user_email: user?.email,
           user_name: user?.displayName,
           request_status: "pending",
