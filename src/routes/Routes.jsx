@@ -13,6 +13,7 @@ import Login from "../pages/login/Login";
 import MealDetails from "../pages/mealDetails/MealDetails";
 import NotFound from "../pages/notFound/NotFound";
 import Register from "../pages/register/Register";
+import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
@@ -71,7 +72,9 @@ const router = createBrowserRouter([
         path: "add-meal",
         element: (
           <PrivateRoutes>
-            <AddMeal />
+            <AdminRoute>
+              <AddMeal />
+            </AdminRoute>
           </PrivateRoutes>
         ),
       },
@@ -79,7 +82,9 @@ const router = createBrowserRouter([
         path: "all-meals",
         element: (
           <PrivateRoutes>
-            <AllMeals />
+            <AdminRoute>
+              <AllMeals />
+            </AdminRoute>
           </PrivateRoutes>
         ),
       },
@@ -87,7 +92,9 @@ const router = createBrowserRouter([
         path: "update-meal/:id",
         element: (
           <PrivateRoutes>
-            <UpdateMeal />
+            <AdminRoute>
+              <UpdateMeal />
+            </AdminRoute>
           </PrivateRoutes>
         ),
       },
@@ -95,7 +102,9 @@ const router = createBrowserRouter([
         path: "manage-users",
         element: (
           <PrivateRoutes>
-            <ManageUsers />
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
           </PrivateRoutes>
         ),
       },
