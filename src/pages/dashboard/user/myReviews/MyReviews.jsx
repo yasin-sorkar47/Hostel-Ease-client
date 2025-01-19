@@ -73,7 +73,10 @@ export default function MyReviews() {
                   <td>{review.likes}</td>
                   <td>{review.review}</td>
                   <td>
-                    <Link className="text-xl">
+                    <Link
+                      to={`/dashboard/my-reviews/edit/${review._id}`}
+                      className="text-xl"
+                    >
                       <FaEdit />
                     </Link>
                   </td>
