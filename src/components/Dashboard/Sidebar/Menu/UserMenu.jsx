@@ -9,6 +9,7 @@ const UserMenu = () => {
         label="Requested Meals"
         address="requested-meals"
       />
+      <MenuItem icon={FaUserCog} label="My Reviews" address="my-reviews" />
     </>
   );
 };

@@ -78,7 +78,7 @@ export default function RequestedMeals() {
               ))
             ) : (
               <tr>
-                <td className="border  text-center text-xl" colSpan="9">
+                <td className="border  text-center text-xl" colSpan="6">
                   Not Found🥲
                 </td>
               </tr>

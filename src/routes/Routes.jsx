@@ -8,6 +8,7 @@ import AllMeals from "../pages/dashboard/admin/allMeals/AllMeals";
 import ManageUsers from "../pages/dashboard/admin/manageUsers/ManageUsers";
 import UpdateMeal from "../pages/dashboard/admin/updateMeal/UpdateMeal";
 import Profile from "../pages/dashboard/common/Profile";
+import MyReviews from "../pages/dashboard/user/myReviews/MyReviews";
 import RequestedMeals from "../pages/dashboard/user/requestedMeals/RequestedMeals";
 import Home from "../pages/home/home/Home";
 import Login from "../pages/login/Login";
@@ -118,6 +119,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <RequestedMeals />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "my-reviews",
+        element: (
+          <PrivateRoutes>
+            <MyReviews />
           </PrivateRoutes>
         ),
       },
