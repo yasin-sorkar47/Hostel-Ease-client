@@ -1,4 +1,11 @@
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { useParams } from "react-router-dom";
+import CheckoutForm from "./CheckoutForm";
+
+const stripePromise = loadStripe(
+  `${import.meta.env.VITE_STRIPE_PUBLIC_API_KEY}`
+);
 
 export default function Checkout() {
   const { badge } = useParams();
@@ -68,9 +75,10 @@ export default function Checkout() {
               )}
             </div>
 
-            <button className="bg-blue-500 text-white font-medium text-lg px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300">
-              Purchase
-            </button>
+            {/* checkout form  */}
+            <Elements stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
           </div>
         </div>
       </div>
