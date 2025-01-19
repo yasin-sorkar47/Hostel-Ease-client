@@ -21,6 +21,7 @@ export default function AddUpcomingMeals({ setIsOpen }) {
       data.rating = 4;
       data.likes = 0;
       data.reviews_count = 0;
+      data.likedBy = [];
 
       // make inGredients an array
       data.ingredients = data.ingredients.split("\n");

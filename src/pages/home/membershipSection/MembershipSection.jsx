@@ -60,7 +60,7 @@ const MembershipSection = () => {
                   </span>
                 </h3>
                 <p className="text-2xl font-bold text-gray-700 mb-4">
-                  $19.99 / month
+                  $29.99 / month
                 </p>
                 <p className="text-gray-600 mb-6">
                   Basic membership with limited features.
@@ -85,7 +85,7 @@ const MembershipSection = () => {
                   </span>
                 </h3>
                 <p className="text-2xl font-bold text-gray-700 mb-4">
-                  $39.99 / month
+                  $49.99 / month
                 </p>
                 <p className="text-gray-600 mb-6">
                   Advanced membership with additional features.

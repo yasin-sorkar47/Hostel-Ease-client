@@ -11,9 +11,9 @@ export default function Checkout() {
   const { badge } = useParams();
   let price =
     badge === "silver"
-      ? "19.99"
+      ? "29.99"
       : badge === "gold"
-      ? "39.99"
+      ? "49.99"
       : badge === "platinum"
       ? "59.99"
       : "N/N";

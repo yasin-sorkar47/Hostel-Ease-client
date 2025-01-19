@@ -21,6 +21,7 @@ import Login from "../pages/login/Login";
 import MealDetails from "../pages/mealDetails/MealDetails";
 import NotFound from "../pages/notFound/NotFound";
 import Register from "../pages/register/Register";
+import AllUpcomingMeals from "../pages/upcomingMeals/AllUpcomingMeals";
 import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "meals",
         element: <Meals />,
+      },
+      {
+        path: "upcomingMeals",
+        element: <AllUpcomingMeals />,
       },
       {
         path: "login",
