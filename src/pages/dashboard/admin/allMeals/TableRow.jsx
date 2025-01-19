@@ -28,7 +28,12 @@ export default function TableRow({ meal, index, handleDelete }) {
         </button>
       </td>
       <td>
-        <Link className="border px-4 py-1 border-purple-400">View Meal</Link>
+        <Link
+          to={`/meal-details/${_id}`}
+          className="border px-4 py-1 border-purple-400"
+        >
+          View Meal
+        </Link>
       </td>
     </tr>
   );
