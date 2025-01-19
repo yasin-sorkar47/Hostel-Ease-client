@@ -9,6 +9,11 @@ const AdminMenu = () => {
       <MenuItem icon={FaUserCog} label="All Meals" address="all-meals" />
       <MenuItem icon={FaUserCog} label="All Reviews" address="all-reviews" />
       <MenuItem icon={FaUserCog} label="Serve Meals" address="serve-meals" />
+      <MenuItem
+        icon={FaUserCog}
+        label="Upcoming Meals"
+        address="upcoming-meals"
+      />
     </>
   );
 };
