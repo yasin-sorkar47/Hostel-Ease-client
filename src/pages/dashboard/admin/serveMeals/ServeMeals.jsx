@@ -1,13 +1,15 @@
+import { useState } from "react";
 import { useQuery } from "react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 export default function ServeMeals() {
   const axiosSecure = useAxiosSecure();
+  const [query, setQuery] = useState("");
   const { data: requestedMeals = [], refetch } = useQuery({
-    queryKey: ["requested-meals"],
+    queryKey: ["requested-meals", query],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/requested-meals`);
+      const { data } = await axiosSecure(`/requested-meals?query=${query}`);
       return data;
     },
   });
@@ -39,8 +41,20 @@ export default function ServeMeals() {
     });
   };
 
+  const handleSearch = (e) => {
+    setQuery(e.target.value);
+  };
+
   return (
     <div className="px-4 md:px-8 lg:px-12 xl:px-14 mt-10">
+      <div className="mb-5">
+        <input
+          value={query}
+          onChange={handleSearch}
+          placeholder="Type here"
+          className="input input-bordered w-full max-w-xs"
+        />
+      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
