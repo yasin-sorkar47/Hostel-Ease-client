@@ -3,6 +3,7 @@ import AdminStatistics from "../components/Dashboard/Statistics/AdminStatistics"
 import DashboardLayout from "../layOuts/DashboardLayout";
 import Main from "../layOuts/Main";
 import Meals from "../pages/allMeals/Meals";
+import Checkout from "../pages/checkout/Checkout";
 import AddMeal from "../pages/dashboard/admin/addMeal/AddMeal";
 import AllMeals from "../pages/dashboard/admin/allMeals/AllMeals";
 import AllReview from "../pages/dashboard/admin/allReviews/AllReviews";
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "meal-details/:id",
         element: <MealDetails />,
+      },
+      {
+        path: "checkout/:badge",
+        element: (
+          <PrivateRoutes>
+            <Checkout />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "meals",

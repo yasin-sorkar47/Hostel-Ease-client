@@ -44,7 +44,10 @@ const MembershipSection = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Silver Package */}
-          <Link>
+          <Link
+            className="hover:border border-purple-400 rounded-lg"
+            to={"/checkout/silver"}
+          >
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="px-6 py-8 text-center">
                 <div className="mb-4">
@@ -67,7 +70,10 @@ const MembershipSection = () => {
           </Link>
 
           {/* Gold Package */}
-          <Link>
+          <Link
+            className="hover:border border-purple-400 rounded-lg"
+            to={"/checkout/gold"}
+          >
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="px-6 py-8 text-center">
                 <div className="mb-4">
@@ -89,7 +95,10 @@ const MembershipSection = () => {
           </Link>
 
           {/* Platinum Package */}
-          <Link>
+          <Link
+            className="hover:border border-purple-400 rounded-lg"
+            to={"/checkout/platinum"}
+          >
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="px-6 py-8 text-center">
                 <div className="mb-4">
