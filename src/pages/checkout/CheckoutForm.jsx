@@ -1,10 +1,35 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import "./checkout.css";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ price, badge }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const axiosSecure = useAxiosSecure();
+  const [clientSecret, setClientSecret] = useState("");
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getPaymentIntent();
+  }, []);
+
+  const getPaymentIntent = async () => {
+    try {
+      const { data } = await axiosSecure.post("/create-payment-intent", {
+        price: price,
+      });
+
+      setClientSecret(data.clientSecret);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (event) => {
     // Block native form submission.
@@ -36,6 +61,42 @@ const CheckoutForm = () => {
     } else {
       console.log("[PaymentMethod]", paymentMethod);
     }
+
+    // confirm payment
+    const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: card,
+        billing_details: {
+          name: user?.displayName,
+          email: user?.email,
+        },
+      },
+    });
+
+    if (paymentIntent?.status === "succeeded") {
+      // make payment history
+      const userInfo = {
+        name: user?.displayName,
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        payment_method: paymentIntent.payment_method,
+        badge,
+      };
+      try {
+        const { data } = await axiosSecure.post("/payment-histories", userInfo);
+
+        if (data.insertedId) {
+          navigate("/");
+          Swal.fire({
+            title: "Good job!",
+            text: "Your payment has been successful",
+            icon: "success",
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -56,8 +117,12 @@ const CheckoutForm = () => {
           },
         }}
       />
-      <button type="submit" disabled={!stripe}>
-        Pay
+      <button
+        type="submit"
+        className="font-bold uppercase text-white rounded-sm  px-6 py-1 bg-purple-600"
+        disabled={!stripe}
+      >
+        Pay ${price}
       </button>
     </form>
   );
