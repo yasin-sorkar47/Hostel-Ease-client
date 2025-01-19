@@ -10,7 +10,7 @@ export default function MyReviews() {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { data: reviews = [], refetch } = useQuery({
-    queryKey: ["reviews"],
+    queryKey: ["reviews", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(`/reviews/${user?.email}`);
       return data;
@@ -100,7 +100,7 @@ export default function MyReviews() {
               ))
             ) : (
               <tr>
-                <td className="border  text-center text-xl" colSpan="9">
+                <td className="border  text-center text-xl" colSpan="7">
                   Not Found🥲
                 </td>
               </tr>
