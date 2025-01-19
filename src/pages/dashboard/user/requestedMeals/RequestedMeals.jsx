@@ -7,7 +7,7 @@ export default function RequestedMeals() {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { data: requestedMeals = [], refetch } = useQuery({
-    queryKey: ["requested-meals"],
+    queryKey: ["requested-meals", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(`/requested-meals/${user?.email}`);
       return data;
@@ -64,14 +64,32 @@ export default function RequestedMeals() {
                   <td>{meal.meal_title}</td>
                   <td>{meal.likes}</td>
                   <td>{meal.reviews_count}</td>
-                  <td>{meal.request_status}</td>
+                  <td
+                    className={`${
+                      meal.request_status === "canceled" && " text-red-600"
+                    } ${
+                      meal.request_status === "delivered" && " text-green-600"
+                    }`}
+                  >
+                    {meal.request_status}
+                  </td>
                   <td>
                     <button
                       disabled={meal.request_status !== "pending"}
                       onClick={() => handleRequestCancel(meal._id)}
-                      className="border px-4 py-1 border-purple-400 disabled:cursor-not-allowed"
+                      className={`${
+                        meal.request_status === "canceled" &&
+                        "bg-red-200 text-red-600"
+                      } ${
+                        meal.request_status === "delivered" &&
+                        "bg-green-200 text-green-600"
+                      } border px-4 py-1 border-purple-400 disabled:cursor-not-allowed`}
                     >
-                      cancel request
+                      {meal.request_status === "canceled"
+                        ? "canceled"
+                        : meal.request_status === "delivered"
+                        ? "delivered"
+                        : "cancel request"}
                     </button>
                   </td>
                 </tr>
