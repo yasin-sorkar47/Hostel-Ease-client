@@ -10,6 +10,11 @@ const UserMenu = () => {
         address="requested-meals"
       />
       <MenuItem icon={FaUserCog} label="My Reviews" address="my-reviews" />
+      <MenuItem
+        icon={FaUserCog}
+        label="Payment History"
+        address="payment-history"
+      />
     </>
   );
 };

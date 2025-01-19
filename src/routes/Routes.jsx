@@ -13,6 +13,7 @@ import UpdateMeal from "../pages/dashboard/admin/updateMeal/UpdateMeal";
 import Profile from "../pages/dashboard/common/Profile";
 import MyReviews from "../pages/dashboard/user/myReviews/MyReviews";
 import UpdateReviews from "../pages/dashboard/user/myReviews/UpdateReviews";
+import PaymentHistory from "../pages/dashboard/user/paymentHistory/PaymentHistory";
 import RequestedMeals from "../pages/dashboard/user/requestedMeals/RequestedMeals";
 import Home from "../pages/home/home/Home";
 import Login from "../pages/login/Login";
@@ -167,6 +168,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <UpdateReviews />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "payment-history",
+        element: (
+          <PrivateRoutes>
+            <PaymentHistory />
           </PrivateRoutes>
         ),
       },
