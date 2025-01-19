@@ -156,6 +156,7 @@ const MealDetails = () => {
       meal_title: title,
       user_email: user?.email,
       likes: likes,
+      reviews_count: reviews_count + 1,
       meal_id: _id,
       review: reviewValue,
     };

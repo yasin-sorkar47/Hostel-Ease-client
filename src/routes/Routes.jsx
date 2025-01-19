@@ -5,6 +5,7 @@ import Main from "../layOuts/Main";
 import Meals from "../pages/allMeals/Meals";
 import AddMeal from "../pages/dashboard/admin/addMeal/AddMeal";
 import AllMeals from "../pages/dashboard/admin/allMeals/AllMeals";
+import AllReview from "../pages/dashboard/admin/allReviews/AllReviews";
 import ManageUsers from "../pages/dashboard/admin/manageUsers/ManageUsers";
 import UpdateMeal from "../pages/dashboard/admin/updateMeal/UpdateMeal";
 import Profile from "../pages/dashboard/common/Profile";
@@ -109,6 +110,16 @@ const router = createBrowserRouter([
           <PrivateRoutes>
             <AdminRoute>
               <ManageUsers />
+            </AdminRoute>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "all-reviews",
+        element: (
+          <PrivateRoutes>
+            <AdminRoute>
+              <AllReview />
             </AdminRoute>
           </PrivateRoutes>
         ),
