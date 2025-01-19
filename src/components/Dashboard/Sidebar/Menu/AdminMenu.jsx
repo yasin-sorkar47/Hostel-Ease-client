@@ -8,6 +8,7 @@ const AdminMenu = () => {
       <MenuItem icon={FaUserCog} label="Add Meal" address="add-meal" />
       <MenuItem icon={FaUserCog} label="All Meals" address="all-meals" />
       <MenuItem icon={FaUserCog} label="All Reviews" address="all-reviews" />
+      <MenuItem icon={FaUserCog} label="Serve Meals" address="serve-meals" />
     </>
   );
 };
