@@ -20,6 +20,7 @@ const AddMeal = () => {
       data.image = data?.image?.data?.data?.display_url;
       // add some extra value
       data.postTime = new Date();
+      data.price = Number(data.price);
       data.rating = 4;
       data.likes = 0;
       data.reviews_count = 0;

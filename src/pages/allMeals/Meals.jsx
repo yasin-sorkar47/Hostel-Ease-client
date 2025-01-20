@@ -1,8 +1,25 @@
+import { useState } from "react";
+import { useQuery } from "react-query";
 import MealsCart from "../../components/MealsCart";
-import useMeals from "../../hooks/useMeals";
+import useAxiosPublic from "../../hooks/useAxiosPublick";
 
 export default function Meals() {
-  const [meals] = useMeals();
+  const axiosPublic = useAxiosPublic();
+  const [search, setSearch] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [category, setCategory] = useState("");
+
+  const { data: meals = [] } = useQuery({
+    queryKey: ["all-meals", search, minPrice, maxPrice, category],
+    queryFn: async () => {
+      const { data } = await axiosPublic(
+        `/all-meals?search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}&category=${category}`
+      );
+      return data;
+    },
+  });
+
   return (
     <div className="container mx-auto mt-10">
       <div className="text-center mb-8">
@@ -15,7 +32,13 @@ export default function Meals() {
 
       <div className="mb-8 md:px-8 flex flex-col lg:flex-row justify-between items-center">
         <label className="input input-bordered flex lg:mt-8 items-center gap-2">
-          <input type="text" className="grow" placeholder="Search" />
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            className="grow"
+            placeholder="Search"
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -34,13 +57,25 @@ export default function Meals() {
             <label className="form-control w-full max-w-xs">
               <label htmlFor="minPrice">min-price</label>
               <label className="input input-bordered flex items-center ">
-                <input type="text" className="grow" placeholder="Search" />
+                <input
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                  type="text"
+                  className="grow"
+                  placeholder="Search"
+                />
               </label>
             </label>
             <label className="form-control w-full max-w-xs">
               <label htmlFor="minPrice">max-price</label>
               <label className="input input-bordered flex items-center ">
-                <input type="text" className="grow" placeholder="Search" />
+                <input
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                  type="text"
+                  className="grow"
+                  placeholder="Search"
+                />
               </label>
             </label>
           </div>
@@ -48,14 +83,18 @@ export default function Meals() {
             <div className="label">
               <span className="label-text">Filter by category</span>
             </div>
-            <select className="select select-bordered">
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="select select-bordered"
+            >
               <option defaultValue=" select a category">
                 select a category
               </option>
-              <option>All Meals</option>
-              <option>Breakfast</option>
-              <option>Lunch</option>
-              <option>Dinner</option>
+              <option value={"All"}>All Meals</option>
+              <option value={"Breakfast"}>Breakfast</option>
+              <option value={"Lunch"}>Lunch</option>
+              <option value={"Dinner"}>Dinner</option>
             </select>
           </label>
         </div>

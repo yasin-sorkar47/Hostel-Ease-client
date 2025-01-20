@@ -4,7 +4,7 @@ import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import imageUpload from "../../../../utilities/imageUpload";
 
-export default function AddUpcomingMeals({ setIsOpen }) {
+export default function AddUpcomingMeals({ setIsOpen, refetch }) {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { register, handleSubmit, reset } = useForm();
@@ -20,6 +20,7 @@ export default function AddUpcomingMeals({ setIsOpen }) {
       data.postTime = new Date();
       data.rating = 4;
       data.likes = 0;
+      data.price = Number(data.price);
       data.reviews_count = 0;
       data.likedBy = [];
 
@@ -44,6 +45,7 @@ export default function AddUpcomingMeals({ setIsOpen }) {
           reset();
           // show notification to user
           if (res.data?.insertedId) {
+            refetch();
             setIsOpen(false);
             Swal.fire({
               position: "top-end",

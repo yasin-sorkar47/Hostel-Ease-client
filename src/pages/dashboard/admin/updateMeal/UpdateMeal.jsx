@@ -35,6 +35,7 @@ export default function UpdateMeal() {
 
     // make the array
     formData.ingredients = formData.ingredients.split("\n");
+    formData.price = Number(formData.price);
 
     if (formData.image.size > 0) {
       // upload image to imgbb

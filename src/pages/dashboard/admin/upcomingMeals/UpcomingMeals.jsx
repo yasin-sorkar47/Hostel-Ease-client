@@ -53,7 +53,7 @@ export default function UpcomingMeals() {
         >
           Add Meal
         </button>
-        {isOpen && <AddUpcomingMeals setIsOpen={setIsOpen} />}
+        {isOpen && <AddUpcomingMeals refetch={refetch} setIsOpen={setIsOpen} />}
       </div>
       <div className="overflow-x-auto">
         <table className="table">
