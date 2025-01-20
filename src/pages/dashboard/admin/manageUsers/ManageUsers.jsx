@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../../../hooks/useAuth";
@@ -8,14 +8,31 @@ export default function ManageUsers() {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [query, setQuery] = useState("");
+
+  /* for pagination  */
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [count, setCount] = useState(0);
+  const numberOfPages = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(numberOfPages).keys()];
+
   const { data: users = [], refetch } = useQuery({
-    queryKey: ["users", query],
+    queryKey: ["users", query, currentPage, itemsPerPage],
     enabled: query.length === 0 || query.length > 0,
     queryFn: async () => {
-      const { data } = await axiosSecure(`/users?query=${query}`);
+      const { data } = await axiosSecure(
+        `/users?query=${query}&page=${currentPage}&size=${itemsPerPage}`
+      );
       return data;
     },
   });
+
+  /* for pagination  */
+  useEffect(() => {
+    axiosSecure("/usersCount").then((res) => {
+      setCount(res.data.count);
+    });
+  }, []);
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
@@ -47,6 +64,27 @@ export default function ManageUsers() {
         } catch (error) {}
       }
     });
+  };
+
+  /* for pagination  */
+  const handleItemsPerPage = (e) => {
+    const val = parseInt(e.target.value);
+    setItemsPerPage(val);
+    setCurrentPage(0);
+  };
+
+  /* for pagination  */
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  /* for pagination  */
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   return (
@@ -104,6 +142,50 @@ export default function ManageUsers() {
             )}
           </tbody>
         </table>
+
+        {/* for pagination  */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 p-4">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handlePrevPage}
+              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-all"
+            >
+              Prev
+            </button>
+
+            {pages.map((page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`px-4 py-2 rounded-md transition-all ${
+                  currentPage === page
+                    ? "bg-blue-600 text-white font-semibold"
+                    : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+
+            <button
+              onClick={handleNextPage}
+              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-all"
+            >
+              Next
+            </button>
+          </div>
+
+          <select
+            value={itemsPerPage}
+            onChange={handleItemsPerPage}
+            className="px-4 py-2 border max-w-[100px] border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+        </div>
       </div>
     </div>
   );

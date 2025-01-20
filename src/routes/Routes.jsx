@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import AdminStatistics from "../components/Dashboard/Statistics/AdminStatistics";
+import Statistics from "../components/Dashboard/Statistics/Statistics";
 import DashboardLayout from "../layOuts/DashboardLayout";
 import Main from "../layOuts/Main";
 import Meals from "../pages/allMeals/Meals";
@@ -77,7 +77,7 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: (
           <PrivateRoutes>
-            <AdminStatistics />
+            <Statistics />
           </PrivateRoutes>
         ),
       },
