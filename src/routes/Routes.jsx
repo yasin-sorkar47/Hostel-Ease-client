@@ -9,13 +9,13 @@ import AllMeals from "../pages/dashboard/admin/allMeals/AllMeals";
 import AllReview from "../pages/dashboard/admin/allReviews/AllReviews";
 import ManageUsers from "../pages/dashboard/admin/manageUsers/ManageUsers";
 import ServeMeals from "../pages/dashboard/admin/serveMeals/ServeMeals";
+import UpcomingMeals from "../pages/dashboard/admin/upcomingMeals/UpcomingMeals";
 import UpdateMeal from "../pages/dashboard/admin/updateMeal/UpdateMeal";
 import Profile from "../pages/dashboard/common/Profile";
 import MyReviews from "../pages/dashboard/user/myReviews/MyReviews";
 import UpdateReviews from "../pages/dashboard/user/myReviews/UpdateReviews";
 import PaymentHistory from "../pages/dashboard/user/paymentHistory/PaymentHistory";
 import RequestedMeals from "../pages/dashboard/user/requestedMeals/RequestedMeals";
-import UpcomingMeals from "../pages/dashboard/user/upcomingMeals/UpcomingMeals";
 import Home from "../pages/home/home/Home";
 import Login from "../pages/login/Login";
 import MealDetails from "../pages/mealDetails/MealDetails";
@@ -152,6 +152,17 @@ const router = createBrowserRouter([
         ),
       },
 
+      {
+        path: "upcoming-meals",
+        element: (
+          <PrivateRoutes>
+            <AdminRoute>
+              <UpcomingMeals />
+            </AdminRoute>
+          </PrivateRoutes>
+        ),
+      },
+
       // user related routes
       {
         path: "requested-meals",
@@ -182,14 +193,6 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <PaymentHistory />
-          </PrivateRoutes>
-        ),
-      },
-      {
-        path: "upcoming-meals",
-        element: (
-          <PrivateRoutes>
-            <UpcomingMeals />
           </PrivateRoutes>
         ),
       },
