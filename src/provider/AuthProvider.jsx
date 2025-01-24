@@ -54,7 +54,7 @@ export default function AuthProvider({ children }) {
         try {
           axios
             .post(
-              "http://localhost:5000/jwt",
+              "https://hostelease-1773a.web.app/jwt",
               { email },
               { withCredentials: true }
             )
@@ -69,7 +69,7 @@ export default function AuthProvider({ children }) {
       } else {
         try {
           axios
-            .get("http://localhost:5000/logout", {
+            .get("https://hostelease-1773a.web.app/logout", {
               withCredentials: true,
             })
             .then((res) => {
