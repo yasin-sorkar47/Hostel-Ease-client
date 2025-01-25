@@ -1,15 +1,23 @@
-## My Project Name is Learn Skills
+## My Project Name is Hostel Ease
 
 here is the Link
 
-## [Go to see live side](https://online-education-326ed.web.app)
+## [Go to see live side](https://hostelease-1773a.web.app)
+
+### Admin User Name: admi@gamil.com
+
+### Password: 111111
 
 ### Key Features of my project
 
-- in this project you will see many services card in that card you will get the button clicking that button it will take you to details page.
-- in details page you wil get a button.
-- clicking on that button it will take you to book now form where you can book a service.
-- you can also add a service.
-- you can manage your service like you can delete and update the service.
-- you can watch you booked service.
-- you manage your added service's status by service to do page
+- as admin you can manage user.
+- as admin you can create meals.
+- as admin you can manage meals like you can edit & delete.
+- as admin you can see all reviews also delete that.
+- as admin you can serve meals.
+- as admin you can add upcoming meals.
+- as user you can request meals.
+- as user you can see your reviews.
+- as user you can see your payment history.
+- you can search all meals by min and max price.
+- also you can filter by category
