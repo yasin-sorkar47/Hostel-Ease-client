@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import Lottie from "react-lottie";
 import animationData from "../../../../public/hand.json";
 import bannerImage from "../../../assets/banner.jpg";
 
-export default function Banner() {
+export default function Banner({ handleSearch }) {
+  const [value, setValue] = useState("");
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -38,11 +41,17 @@ export default function Banner() {
             <div className="text-center mt-3">
               <div className="join">
                 <input
+                  onChange={(e) => setValue(e.target.value)}
                   type="text"
                   className="input input-bordered join-item outline-none border-none"
                   placeholder="Search"
                 />
-                <button className="btn join-item ">Search</button>
+                <button
+                  onClick={() => handleSearch(value)}
+                  className="btn join-item "
+                >
+                  Search
+                </button>
               </div>
             </div>
           </div>

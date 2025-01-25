@@ -54,7 +54,7 @@ export default function AuthProvider({ children }) {
         try {
           axios
             .post(
-              "https://education-services-server-a-10.vercel.app/jwt",
+              "https://hostelease-a-12.vercel.app/jwt",
               { email },
               { withCredentials: true }
             )
@@ -69,7 +69,7 @@ export default function AuthProvider({ children }) {
       } else {
         try {
           axios
-            .get("https://education-services-server-a-10.vercel.app/logout", {
+            .get("https://hostelease-a-12.vercel.app/logout", {
               withCredentials: true,
             })
             .then((res) => {

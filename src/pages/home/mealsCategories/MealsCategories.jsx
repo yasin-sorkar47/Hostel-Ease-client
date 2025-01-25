@@ -1,11 +1,8 @@
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import MealsCart from "../../../components/MealsCart";
-import useMeals from "../../../hooks/useMeals";
 
-export default function MealsCategories() {
-  const [meals] = useMeals();
-
+export default function MealsCategories({ meals }) {
   return (
     <div className="container mx-auto">
       <div className="mt-14 mb-14 text-center px-4 md:px-0">
@@ -32,39 +29,66 @@ export default function MealsCategories() {
             <TabPanel>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
                 {/* all meals  */}
-                {meals?.map((meal) => (
-                  <MealsCart key={meal._id} meal={meal} />
-                ))}
+                {meals.length > 0 ? (
+                  meals?.map((meal) => <MealsCart key={meal._id} meal={meal} />)
+                ) : (
+                  <div className="text-center  md:col-span-2 lg:col-span-3 xl:col-span-4">
+                    <p className="text-2xl font-bold text-center">
+                      Not Found🥲
+                    </p>
+                  </div>
+                )}
               </div>
             </TabPanel>
             <TabPanel>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
                 {/* Breakfast  */}
-                {meals
-                  ?.filter((item) => item.category === "Breakfast")
-                  .map((meal) => (
-                    <MealsCart key={meal._id} meal={meal} />
-                  ))}
+                {meals?.filter((item) => item.category === "Breakfast").length >
+                0 ? (
+                  meals
+                    ?.filter((item) => item.category === "Breakfast")
+                    .map((meal) => <MealsCart key={meal._id} meal={meal} />)
+                ) : (
+                  <div className="text-center  md:col-span-2 lg:col-span-3 xl:col-span-4">
+                    <p className="text-2xl font-bold text-center">
+                      Not Found🥲
+                    </p>
+                  </div>
+                )}
               </div>
             </TabPanel>
             <TabPanel>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
                 {/* Lunch  */}
-                {meals
-                  ?.filter((item) => item.category === "Lunch")
-                  .map((meal) => (
-                    <MealsCart key={meal._id} meal={meal} />
-                  ))}
+                {meals?.filter((item) => item.category === "Lunch").length >
+                0 ? (
+                  meals
+                    ?.filter((item) => item.category === "Lunch")
+                    .map((meal) => <MealsCart key={meal._id} meal={meal} />)
+                ) : (
+                  <div className="text-center  md:col-span-2 lg:col-span-3 xl:col-span-4">
+                    <p className="text-2xl font-bold text-center">
+                      Not Found🥲
+                    </p>
+                  </div>
+                )}
               </div>
             </TabPanel>
             <TabPanel>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
                 {/* Lunch  */}
-                {meals
-                  ?.filter((item) => item.category === "Dinner")
-                  .map((meal) => (
-                    <MealsCart key={meal._id} meal={meal} />
-                  ))}
+                {meals?.filter((item) => item.category === "Dinner").length >
+                0 ? (
+                  meals
+                    ?.filter((item) => item.category === "Dinner")
+                    .map((meal) => <MealsCart key={meal._id} meal={meal} />)
+                ) : (
+                  <div className="text-center  md:col-span-2 lg:col-span-3 xl:col-span-4">
+                    <p className="text-2xl font-bold text-center">
+                      Not Found🥲
+                    </p>
+                  </div>
+                )}
               </div>
             </TabPanel>
           </Tabs>

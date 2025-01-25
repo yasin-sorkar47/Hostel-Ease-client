@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://education-services-server-a-10.vercel.app",
+  baseURL: "https://hostelease-a-12.vercel.app",
   withCredentials: true,
 });
 
