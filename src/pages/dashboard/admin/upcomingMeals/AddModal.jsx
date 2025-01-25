@@ -18,7 +18,7 @@ export default function AddUpcomingMeals({ setIsOpen, refetch }) {
       data.image = data?.image?.data?.data?.display_url;
       // add some extra value
       data.postTime = new Date();
-      data.rating = 4;
+      data.rating = 0;
       data.likes = 0;
       data.price = Number(data.price);
       data.reviews_count = 0;

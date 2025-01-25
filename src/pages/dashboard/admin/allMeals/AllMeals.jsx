@@ -95,7 +95,7 @@ export default function AllMeals() {
               <th>#</th>
               <th>Title</th>
               <th>Likes</th>
-              <th>REviews_count</th>
+              <th>Reviews_count</th>
               <th>Ratting</th>
               <th>Distributor's Name</th>
               <th>Update</th>

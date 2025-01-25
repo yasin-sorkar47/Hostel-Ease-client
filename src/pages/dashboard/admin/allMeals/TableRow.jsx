@@ -11,8 +11,8 @@ export default function TableRow({ meal, index, handleDelete }) {
       <th>{index + 1}</th>
       <td>{title}</td>
       <td className="text-center">{likes}</td>
-      <td className="text-center">{rating}</td>
       <td className="text-center">{reviews_count}</td>
+      <td className="text-center">{rating}</td>
       <td>{distributorName}</td>
       <td>
         <Link to={`/dashboard/update-meal/${_id}`} className="text-xl">
